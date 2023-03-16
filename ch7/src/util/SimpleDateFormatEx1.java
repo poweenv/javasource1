@@ -17,8 +17,8 @@ public class SimpleDateFormatEx1 {
 		System.out.println(d);
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		System.out.println(sdf.format(d));
-		SimpleDateFormat sdf2 = new SimpleDateFormat("y년 M월 d일 EEEE a HH:mm:ss SS");
 		//날짜와 시간을 특정 형식에 맞춰 출력 가능하게 하는 클래스
+		SimpleDateFormat sdf2 = new SimpleDateFormat("y년 M월 d일 EEEE a HH:mm:ss SS");		
 		System.out.println(sdf2.format(d));
 		// y : 연도 , M : 월 , d : 일, h : 시, m : 분, s: 초, H(24시간제): 시, a : 오전/오후
 		
