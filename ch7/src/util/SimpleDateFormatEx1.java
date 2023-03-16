@@ -12,8 +12,9 @@ import java.util.Date;
 public class SimpleDateFormatEx1 {
 
 	public static void main(String[] args) {		
-		//시스템 날짜와 시간 가져오기
+		
 		Date d= new Date();
+		//시스템 날짜와 시간 가져오기
 		System.out.println(d);
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		System.out.println(sdf.format(d));
