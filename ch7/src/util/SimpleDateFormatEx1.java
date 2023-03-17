@@ -14,7 +14,6 @@ public class SimpleDateFormatEx1 {
 	public static void main(String[] args) {		
 		
 		Date d= new Date();
-//수정
 		System.out.println(d);
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		System.out.println(sdf.format(d));
