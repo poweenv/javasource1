@@ -1,5 +1,5 @@
 package resister;
-
+//tnwjd
 public class Member {
 	//속성 - 아이디, 이름 , 주소, 이메일, 나이
 	
