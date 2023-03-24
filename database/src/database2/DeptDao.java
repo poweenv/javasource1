@@ -141,6 +141,141 @@ public class DeptDao {
 		return list;
 	}
 	
+	public boolean insert(DeptDTO dto) {		
+		//insert 성공 여부
+		boolean status = false;
+		try {
+			con=getConnection();
+			
+			String sql = "insert into dept_temp(deptno,dname,loc) values(?,?,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			//?처리
+			pstmt.setInt(1,dto.getDeptno());
+			pstmt.setString(2, dto.getDname());
+			pstmt.setString(3, dto.getLoc());
+			
+			int result = pstmt.executeUpdate();
+			
+			if (result > 0) status =true;
+				
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(con,pstmt);
+		}
+		return status;
+	}
+	//새 부서 추가 메소드
+	public boolean insert(int deptno,String dname,String loc) {
+		
+		//insert 성공 여부
+		boolean status = false;
+		try {
+			con=getConnection();
+			
+			String sql = "insert into dept_temp(deptno,dname,loc) values(?,?,?)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,deptno);
+			pstmt.setString(2, dname);
+			pstmt.setString(3, loc);
+			
+			int result = pstmt.executeUpdate();
+			
+			if (result > 0) status =true;
+				
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(con,pstmt);
+		}
+		return status;
+	}
+	
+	//부서 정보 수정 메소드
+	public boolean update(String value, int deptno,int updateNo) {
+		boolean status = false;
+		String sql = null;
+		
+		
+		try {
+			
+			con = getConnection();
+			
+			
+			if(updateNo ==1) {
+				
+				//부서수정
+				sql = "update dept_temp set loc=? where deptno=?";
+				
+			}else if(updateNo==2) {
+				//위치수정
+				sql = "update dept_temp set loc=? where deptno=?";
+			}
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, value);
+			pstmt.setInt(2, deptno);
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result>0) status =true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(con,pstmt);
+		}
+		return status;
+		
+	}
+	
+	public boolean remove(int deptno) {
+		boolean status = true;
 
+		try {
+			con = getConnection();
+			String sql = "delete from dept_temp where deptno=?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
+			
+			int result = pstmt.executeUpdate();
+			
+			if (result>0) status = true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(con,pstmt);
+		}
+		return status;
+		
+	}
+	
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
