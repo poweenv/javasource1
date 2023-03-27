@@ -117,7 +117,7 @@ public class EmpDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			
+			close(con,pstmt,rs);
 		}
 		return empDTO;
 
@@ -144,6 +144,60 @@ public class EmpDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(con,pstmt);
+		}
+		return status;
+	}
+	
+	public boolean remove(int empno) {
+		boolean status = false;
+		
+		try {
+			con = getConnection();
+			
+			String sql="delete from emp_temp where empno=?";
+			
+			pstmt = con.prepareStatement(sql);
+			//넘어온 empno를 대입해서 실행
+			pstmt.setInt(1, empno);
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result>0) status = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			close(con,pstmt);
+			return status;
+		}
+				
+		
+	}
+	public boolean insert(EmpDTO empDTO) {
+		boolean status = false;
+		try {
+			con = getConnection();
+			//empno ename job mgr hiredate sal comm deptno from emp_temp where empno=?
+			String sql="insert into emp_temp(empno,ename,job,mgr,hiredate,sal,comm,deptno) values(?,?,?,?,sysdate,?,?,?)";
+			
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setInt(1, empDTO.getEmpno());
+			pstmt.setString(2, empDTO.getEname());
+			pstmt.setString(3, empDTO.getJob());
+			pstmt.setInt(4, empDTO.getMgr());
+			pstmt.setInt(5, empDTO.getSal());
+			pstmt.setInt(6, empDTO.getComm());
+			pstmt.setInt(7, empDTO.getDeptno());
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result>0) status=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			
 		}finally {
 			close(con,pstmt);
 		}

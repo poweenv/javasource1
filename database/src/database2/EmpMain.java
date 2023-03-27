@@ -26,16 +26,42 @@ public class EmpMain {
 			//switch 작성
 			switch(menu) {
 			case 1:
-
+				EmpDTO empDTO = new EmpDTO();
+				System.out.println("추가할 사원 정보 입력");
+				System.out.println("번호 입력");
+				empDTO.setEmpno(Integer.parseInt(sc.nextLine()));
+				System.out.println("이름 입력");
+				empDTO.setEname(sc.nextLine());
+				System.out.println("직업 입력");
+				empDTO.setJob(sc.nextLine());
+				System.out.println("매니저번호 입력");
+				empDTO.setMgr(Integer.parseInt(sc.nextLine()));
+				System.out.println("급여 입력");
+				empDTO.setSal(Integer.parseInt(sc.nextLine()));
+				System.out.println("추가 수당 입력");
+				empDTO.setComm(Integer.parseInt(sc.nextLine()));
+				System.out.println("부서번호 입력");
+				empDTO.setDeptno(Integer.parseInt(sc.nextLine()));
+				
+				
+				System.out.println(empDAO.insert(empDTO)?"사원 추가 성공":"사원 추가 실패");
+				
+			
+				;
+				
 				break;
 			case 2:
+				System.out.println("삭제할 사원 번호 입력");
+				int empno = Integer.parseInt(sc.nextLine());
+				
+				System.out.println(empDAO.remove(empno)?"사원 삭제 성공":"사원 삭제 실패");
 				
 				break;
 			case 3:
 				//empno,sal 입력받기
 				System.out.println("수정할 정보 입력>>");
 				System.out.println("사원번호");
-				int empno = Integer.parseInt(sc.nextLine());
+				empno = Integer.parseInt(sc.nextLine());
 				
 				System.out.println("수정급여");
 				int sal = Integer.parseInt(sc.nextLine());
@@ -74,11 +100,11 @@ public class EmpMain {
 
 				System.out.println("사번\t사원명\t직무\t입사일");
 				System.out.println("============================");
-				for (EmpDTO empDTO : list) {
-					System.out.print(empDTO.getEmpno()+"\t");
-					System.out.print(empDTO.getEname()+"\t");
-					System.out.print(empDTO.getJob()+"\t");
-					System.out.print(empDTO.getHiredate()+"\n\n");
+				for (EmpDTO EmpDTO : list) {
+					System.out.print(EmpDTO.getEmpno()+"\t");
+					System.out.print(EmpDTO.getEname()+"\t");
+					System.out.print(EmpDTO.getJob()+"\t");
+					System.out.print(EmpDTO.getHiredate()+"\n\n");
 				
 				}
 				}		
