@@ -1,4 +1,4 @@
-package shop2;
+package DbShop;
 
 //상수, 모든메서드는 추상
 public interface IShop {

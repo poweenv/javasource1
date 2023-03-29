@@ -1,4 +1,4 @@
-package shop2;
+package DbShop;
 
 import java.util.Scanner;
 

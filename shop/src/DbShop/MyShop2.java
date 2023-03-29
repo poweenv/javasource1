@@ -1,6 +1,7 @@
-package shop2;
+package DbShop;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -10,12 +11,6 @@ public class MyShop2 implements IShop{
 	
 	//쇼핑몰 이름
 	private String title;
-	//user 정보 저장 배열
-	UserDTO[] users = new UserDTO[2];
-	//product 정보 저장 배열
-	Product products[] = new Product[4];
-	//구매한 제품을 저장 배열(cart)
-	Product carts[] = new Product[10];
 	
 	//선택된 user 저장
 	private int selUser;
@@ -87,7 +82,12 @@ public class MyShop2 implements IShop{
 		for (UserDTO userDTO : list) {
 			System.out.print(userDTO.getUserId()+"\t");
 			System.out.print(userDTO.getName()+"\t");
-			System.out.print(userDTO.getPayNo()+"\n");
+		//	System.out.print(userDTO.getPayNo()+"\t");
+			System.out.print(userDTO.getType()+"\n");
+			
+		
+			
+			
 		}
 		
 		System.out.println("[x] 종   료");
@@ -163,18 +163,29 @@ public class MyShop2 implements IShop{
 		System.out.println(title+" check out");
 		System.out.println("==========================");
 		int sumPrice = 0;
-		for (int i = 0; i < carts.length; i++) {
-			if(carts[i]!=null) {
-				System.out.printf("[%d] %s(%d)\n",i,carts[i].getName(),carts[i].getPrice());
-				sumPrice+=carts[i].getPrice();
-			}
-//			System.out.println(sumPrice);
-//			System.out.println("결제방법을 선택해 주세요");
+		
+		List<OrderDTO> list= orderDAO.carts(selUser);
+		System.out.println("아이디 이름 결제 방법  제품번호 제품명 가격 상세내역 주문일자");
+		for (OrderDTO orderDTO : list) {
 			
+			//아이디 이름 결제방법 =>OrderDTO 안 UserDTO
+			System.out.print(orderDTO.getUserDTO().getUserId()+"\t");
+			System.out.print(orderDTO.getUserDTO().getName()+"\t");
+			System.out.print(orderDTO.getUserDTO().getType()+"\t");
+			// 제품 => OrderDTO 안 ProductDTO
+			System.out.print(orderDTO.getProductDTO().getProductId()+"\t");
+			System.out.print(orderDTO.getProductDTO().getPname()+"\t");
+			System.out.print(orderDTO.getProductDTO().getPrice()+"\t");
+			System.out.print(orderDTO.getProductDTO().getContent()+"\t");
+			// 주문일자 => OrderDTO
+			System.out.print(orderDTO.getOrderDate()+"\n");
+			
+			sumPrice += orderDTO.getProductDTO().getPrice();
 			
 		}
+		
+		
 		System.out.println("========================");
-//		System.out.println("결제 방법 : "+users[selUser].getPayType());
 		System.out.println("결제 금액 : "+sumPrice);
 		System.out.println("[p] 이전, [q] 결제완료");
 		System.out.println("choose : ");

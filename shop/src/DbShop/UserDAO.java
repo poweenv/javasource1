@@ -1,11 +1,12 @@
-package shop2;
+package DbShop;
+
+import static DbShop.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import static shop2.JdbcUtil.*;
 
 /*
  	 JdbcUtil 메소드 호출하는
@@ -54,7 +55,11 @@ public class UserDAO {
 		try {
 		
 			con = getConnection();
-			String sql = "select * from suser";
+			//suser 전체 조회
+			//String sql = "select * from suser";
+			
+			String sql="select u.user_id,u.name, p.pay_no,p.info\r\n "
+					+ "from suser u join paytype p on u.pay_no=p.pay_no";
 			
 			pstmt = con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -63,7 +68,7 @@ public class UserDAO {
 //				UserDTO dto = new UserDTO(rs.getInt(0),rs.getString(2),rs.getInt(3));
 //				list.add(dto);
 				
-				list.add(new UserDTO(rs.getInt(1),rs.getString(2),rs.getInt(3)));
+				list.add(new UserDTO(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4)));
 			}
 			
 			

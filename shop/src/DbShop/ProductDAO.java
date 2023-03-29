@@ -1,12 +1,12 @@
-package shop2;
+package DbShop;
+
+import static DbShop.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
-import static shop2.JdbcUtil.*;
 public class ProductDAO {
 
 	private Connection con;

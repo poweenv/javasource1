@@ -1,4 +1,4 @@
-package shop2;
+package DbShop;
 
 import java.util.Date;
 
@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+//클래스 관계 : 1)상속(isa) 2)포함(hasa)
 
 @Getter
 @Setter
@@ -18,5 +19,10 @@ public class OrderDTO {
 	private int orderId;
 	private int userId;
 	private int productId;
-	private Date date;
+	private Date orderDate;
+	
+	//포함관계
+	private UserDTO userDTO;
+	private ProductDTO productDTO;
+	private PayType payType;
 }

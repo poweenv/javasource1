@@ -1,4 +1,4 @@
-package shop2;
+package DbShop;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,5 +19,8 @@ public class UserDTO {
 	private String name;
 	private int payNo;
 	
+	
+	//card,cash 정보 담을 변수
+	private String type;
 
 }

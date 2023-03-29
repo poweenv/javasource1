@@ -1,4 +1,4 @@
-package shop2;
+package DbShop;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
