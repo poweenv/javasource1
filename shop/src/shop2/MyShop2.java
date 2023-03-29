@@ -1,5 +1,6 @@
 package shop2;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,6 +23,7 @@ public class MyShop2 implements IShop{
 	//userDAO 객체 생성
 	UserDAO userDAO = new UserDAO();
 	ProductDAO productDAO = new ProductDAO();
+	OrderDAO orderDAO = new OrderDAO();
 	Scanner sc = new Scanner(System.in);
 	
 
@@ -80,12 +82,17 @@ public class MyShop2 implements IShop{
 		System.out.println(title + " : 메인화면 - 계정 선택");
 		System.out.println("===========================================");
 		
-		for (int i = 0; i < users.length; i++) {
-//			System.out.printf("[%d] %s(%s)\n",i,users[i].getName(),users[i].getPayType());
+		//현재 user 정보 출력 
+		List<UserDTO> list = userDAO.getList();
+		for (UserDTO userDTO : list) {
+			System.out.print(userDTO.getUserId()+"\t");
+			System.out.print(userDTO.getName()+"\t");
+			System.out.print(userDTO.getPayNo()+"\n");
 		}
+		
 		System.out.println("[x] 종   료");
-		System.out.print("선택 : ");
-		String sel = sc.nextLine();
+		System.out.print("회원코드입력 : ");
+		String sel = sc.nextLine(); // 숫자("1000"),x
 		System.out.println("## "+sel+" 선택 ##");
 		System.out.println();
 		
@@ -95,7 +102,7 @@ public class MyShop2 implements IShop{
 		case "x": case "X":
 			System.exit(0);  //프로그램 종료
 			break;
-		case "0": case "1":
+		case "1000": case "1010":
 			selUser=Integer.parseInt(sel);
 			productList();
 			break;
@@ -109,28 +116,34 @@ public class MyShop2 implements IShop{
 	public void productList() {
 		System.out.println(title+" : 상품 목록 - 상품선택 ");
 		System.out.println("=============================");
-		//products 배열 출력
-		for (int i = 0; i < products.length; i++) {
-			System.out.printf("[%d]",i);
-			products[i].printDetail();
-			products[i].printExtra();
+		
+		//product 데이터베이스 상품 출력
+		//product_id, pname, price, content
+		List<ProductDTO> list= productDAO.getList();
+		for (ProductDTO productDTO : list) {
+			System.out.print(productDTO.getProductId()+"\t");
+			System.out.print(productDTO.getPname()+"\t");
+			System.out.print(productDTO.getPrice()+"\t");
+			System.out.print(productDTO.getContent()+"\n");
 		}
+		
+		
+		
+		
 		System.out.println("[h] 메인화면");
 		System.out.println("[c] check out");
 		System.out.println("chose :  ");
 		String sel = sc.nextLine();
-		// 상품선택 시0~3
+		// 상품선택 시0~3 => sorder 저장, productList() 호출
 		// h=> start 메소드 호출, c=> checkOut() 호출
 	switch (sel) {
-	case "0": case"1": case "2": case "3":
-		for (int i = 0; i < carts.length; i++) {
-			if(carts[i]==null) {
-				// Integer.parseInt("0") ==>0
-				carts[i] = products[Integer.parseInt(sel)];
-				break;
-			}
-		}
-		productList();
+	case "12": case"13": case "15": case "21":
+		
+				orderDAO.insert(selUser, Integer.parseInt(sel));
+				productList();
+				
+			
+		
 		break;
 	case "h": case"H":
 		start();
