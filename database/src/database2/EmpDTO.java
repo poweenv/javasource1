@@ -1,5 +1,5 @@
 package database2;
-
+//수정
 import java.util.Date;
 
 import lombok.Getter;
