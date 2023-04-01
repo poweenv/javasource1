@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import oracle.jdbc.proxy.annotation.Pre;
 
 public class SelectOne {
 

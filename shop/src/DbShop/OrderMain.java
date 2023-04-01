@@ -5,7 +5,6 @@ public class OrderMain {
 	public static void main(String[] args) {
 		// OrderDTO 사용하기
 		OrderDTO dto = new OrderDTO();
-		
 		//프로퍼티에 값 세팅 = > 생성자 2) setter 메소드 사용
 		dto.setOrderId(1000);
 		

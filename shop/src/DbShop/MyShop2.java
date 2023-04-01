@@ -55,6 +55,7 @@ public class MyShop2 implements IShop{
 		}
 	}
 	
+	
 	@Override
 	public void genProduct() {		
 		// 상품 정보 입력받아서 테이블 저장					

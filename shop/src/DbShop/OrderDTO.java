@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 //클래스 관계 : 1)상속(isa) 2)포함(hasa)
 
 @Getter
@@ -20,9 +21,10 @@ public class OrderDTO {
 	private int userId;
 	private int productId;
 	private Date orderDate;
-	
 	//포함관계
 	private UserDTO userDTO;
 	private ProductDTO productDTO;
 	private PayType payType;
+	
+	
 }

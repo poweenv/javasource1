@@ -17,8 +17,7 @@ public class OrderDAO {
 	
 	//C(insert)R(select)U(update)D(delete) method 작성
 	
-	
-	
+
 	//장바구니 ==> sorder 추가
 	public boolean insert(int userId,int productId) {
 		boolean status = false;

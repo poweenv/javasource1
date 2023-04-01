@@ -1,19 +1,18 @@
 package database2;
-//수정
+
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.AllArgsConstructor;
 import lombok.ToString;
 
-/*
- 	table 컬럼과 동일하게 작성
- 	getter/setter ,toString,
- */
-@NoArgsConstructor @AllArgsConstructor
-@Getter @Setter @ToString
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class EmpDTO {
 	private int empno;
 	private String ename;
@@ -23,7 +22,5 @@ public class EmpDTO {
 	private int sal;
 	private int comm;
 	private int deptno;
-
-	
 	
 }

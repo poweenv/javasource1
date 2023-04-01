@@ -61,6 +61,7 @@ public class EmpDao {
 	public ArrayList<EmpDTO> getList(String ename){
 		ArrayList<EmpDTO> list =new ArrayList<>();
 		
+		
 		try {
 			con = getConnection();
 			//ename 이 홍길동인 사람 조회(empno, ename,job,hiredate)
