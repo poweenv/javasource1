@@ -4,7 +4,7 @@ package inheritance.code;
 //다른 패키지에 있는 클래스를 사용할 때 필요
 import java.util.Scanner;
 import java.util.Date;
-import exam.Account;  
+
 
 
 // java.lang 패키지에 있는 클래스를 사용할 때는 import 구문이 필요없음
@@ -33,7 +33,7 @@ public class Test {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		Account account = new Account(null, null, 0);
+//		Account account = new Account(null, null, 0);
 		
 		Date date = new Date();
 		
